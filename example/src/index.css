@@ -62,6 +62,10 @@ a{
   position: relative;
 }
 
+.status > div{
+  word-break: break-all;
+}
+
 label{
   display: block;
 }
