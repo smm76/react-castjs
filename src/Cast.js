@@ -259,7 +259,7 @@ class Castjs {
         } else if (this._events[event]) {
             if(fn){
                 this._events[event].forEach((func, i) => {
-                    if(fn === func){
+                    if(fn.toString() === func.toString()){
                         this._events[event].splice(i,1)
                     }
                 })

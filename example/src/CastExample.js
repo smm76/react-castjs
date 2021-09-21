@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ExampleComponent, CastProvider, useCast, CastButton } from 'react-castjs'
+import { useCast, CastButton } from 'react-castjs'
 
 
 
 function CastExample(){
-
+    // use the hook
     const { chromecast } = useCast()
     const [castAvailable, setCastAvailable] = useState(chromecast.available)
     const [castConnected, setCastConnected] = useState(chromecast.connected)
@@ -54,11 +54,14 @@ function CastExample(){
             pushMessage(["media paused"])
         })
 
-
+        // remove event listeners
         return function cleanup(){
             chromecast.off('connect')
             chromecast.off('disconnect')
+            // remove specific listener
             chromecast.off('available', onAvailable)
+            chromecast.off('pause')
+            chromecast.off('playing')
         }
     }, [])
 
@@ -81,6 +84,7 @@ function CastExample(){
     async function cast(){
         if(chromecast.available){
             try {
+                // start casting or cast new media in the same session
                 await chromecast.cast(source, {
                     poster     : poster,
                     title      : title,
