@@ -59,6 +59,56 @@ function MyButton(){
 }
 ```
 
+### Handle Events
+
+```jsx
+import { useEffect, useRef, useState } from 'react'
+import { useCast, CastButton } from 'react-castjs'
+
+
+
+function MyButton(){
+
+    const { chromecast } = useCast()
+    const [castAvailable, setCastAvailable] = useState(chromecast.available)
+    const [castConnected, setCastConnected] = useState(chromecast.connected)
+
+    useEffect(() => {
+
+        chromecast.on('available', () => {
+            console.log('change', chromecast.available)
+            setCastAvailable(chromecast.available)
+        })
+
+        chromecast.on('connect', () => {
+            setCastConnected(chromecast.connected)
+        })
+
+        // remove event-listeners when component is unmounted
+        return function cleanup(){
+            chromecast.off()
+        }
+    }, [])
+
+    return (
+      {castAvailable
+      ?
+      <div>
+        <CastButton onClick={cast}/>
+        {castConnected
+        ?
+          <button onClick={() => chromecast.disconnect()}>disconnect</button>
+        :
+          null
+        }
+      </div>
+      :
+      null
+      }
+    )
+}
+```
+
 ## License
 
 MIT © [smm76](https://github.com/smm76)
