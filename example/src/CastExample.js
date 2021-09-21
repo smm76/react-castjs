@@ -78,8 +78,8 @@ function CastExample(){
         <div>
             <h1>react-castjs demo</h1>
             <div className="links">
-                <a href="https://github.com/smm76/react-castjs">view on github</a>
-                <a href="">npm</a>
+                <a href="https://github.com/smm76/react-castjs" target="_blank" rel="noopener">view on github</a>
+                <a href="https://www.npmjs.com/package/react-castjs" target="_blank" rel="noopener">view on npm</a>
             </div>
             <code>
                 npm i react-castjs -S

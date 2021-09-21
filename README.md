@@ -1,9 +1,12 @@
 # react-castjs
 
-> Cast sender library for React, originally forked from Cast.js
+> Cast sender library for React, originally forked from [Cast.js](https://github.com/castjs/castjs)
+
 
 [![NPM](https://img.shields.io/npm/v/react-castjs.svg)](https://www.npmjs.com/package/react-castjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+
+[Demo](https://smm76.github.io/react-castjs/)
 ## Install
 
 ```bash
@@ -108,6 +111,12 @@ function MyButton(){
     )
 }
 ```
+
+## Docs
+
+// TODO
+
+mostly shared with [Cast.js](https://github.com/castjs/castjs)
 
 ## License
 
