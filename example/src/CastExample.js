@@ -8,11 +8,13 @@ function CastExample(){
     const { chromecast } = useCast()
     const [castAvailable, setCastAvailable] = useState(chromecast.available)
     const [castConnected, setCastConnected] = useState(chromecast.connected)
+    const [isPlaying, setIsPlaying] = useState(!chromecast.paused)
     const [source, setSource] = useState('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')
     const [poster, setPoster] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sintel_poster.jpg/800px-Sintel_poster.jpg')
     const [title, setTitle] = useState('Example Title')
     const inputRef = useRef()
     const inputImgRef = useRef()
+    const statusRef = useRef()
 
     const _log = useRef([])
 
@@ -42,6 +44,16 @@ function CastExample(){
             pushMessage(["error occured"])
         })
 
+        chromecast.on('playing', () => {
+            setIsPlaying(true)
+            pushMessage(["media playing"])
+        })
+
+        chromecast.on('pause', () => {
+            setIsPlaying(false)
+            pushMessage(["media paused"])
+        })
+
 
         return function cleanup(){
             chromecast.off('connect')
@@ -59,6 +71,12 @@ function CastExample(){
         })
         setLog([..._log.current])
     }
+
+    useEffect(() => {
+        if(statusRef.current){
+            statusRef.current.scrollTop = statusRef.current.scrollHeight
+        }
+    }, [log])
 
     async function cast(){
         if(chromecast.available){
@@ -103,23 +121,36 @@ function CastExample(){
             <br/>
 
             <CastButton onClick={cast} size={30} style={{ fontWeight: "bold", background: "#23f17e", padding: ".5rem" }} title={castConnected? "cast" : "start casting"} disabled={!castAvailable || source === ""} />
-
-            <div className="status">
+            <div style={{ position: "relative" }}>
                 {log.length > 0 && <button className="clear" onClick={() => {
                     _log.current = []
                     setLog([..._log.current])
                 }}>clear</button>}
-                {log.map((l,i) => (
-                    <div key={i.toString()}>
-                        <small style={{fontSize: ".7rem"}}>[{l.date}]</small> {l.msg}
-                    </div>
-                ))}
+                <div ref={ref => statusRef.current = ref} className="status">
+                    {log.map((l,i) => (
+                        <div key={i.toString()}>
+                            <small style={{fontSize: ".7rem"}}>[{l.date}]</small> {l.msg}
+                        </div>
+                    ))}
+                </div>
             </div>
             {castConnected
             &&
-            <button onClick={() => chromecast.disconnect()}>
-                disconnect
-            </button>}
+            <div className="controls">
+                {isPlaying
+                ?
+                <button onClick={() => chromecast.pause()}>
+                    pause
+                </button>
+                :
+                <button onClick={() => chromecast.play()}>
+                    play
+                </button>
+                }    
+                <button onClick={() => chromecast.disconnect()} style={{ marginLeft: ".5rem" }}>
+                    disconnect
+                </button>    
+            </div>}
             
         </div>
     )

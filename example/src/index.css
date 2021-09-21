@@ -60,6 +60,8 @@ a{
   font-family: monospace;
   font-size: .9rem;
   position: relative;
+  height: 220px;
+  overflow-y: scroll;
 }
 
 .status > div{
@@ -72,8 +74,12 @@ label{
 
 button{
   background: none;
-  border: solid 2px;
   border-radius: 5px;
+}
+
+.controls button{
+  border: solid 2px white;
+  color: white;
   font-weight: bold;
   cursor: pointer;
 }
@@ -81,7 +87,9 @@ button{
 .clear{
   position: absolute;
   top: .5rem;
-  right: .5rem;
+  right: 1.5rem;
   color: white;
+  border: solid 2px;
   border-color: white;
+  z-index: 10;
 }
