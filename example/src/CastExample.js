@@ -9,8 +9,8 @@ function CastExample(){
     const [castAvailable, setCastAvailable] = useState(chromecast.available)
     const [castConnected, setCastConnected] = useState(chromecast.connected)
     const [source, setSource] = useState('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')
-    const [poster, setPoster] = useState('https://castjs.io/media/poster.jpg')
-    const [title, setTitle] = useState('Title')
+    const [poster, setPoster] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sintel_poster.jpg/800px-Sintel_poster.jpg')
+    const [title, setTitle] = useState('Example Title')
     const inputRef = useRef()
     const inputImgRef = useRef()
 
