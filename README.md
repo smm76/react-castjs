@@ -1,4 +1,4 @@
-# react-castjs
+# react-castjs 📺 
 
 > Cast sender library for React, originally forked from [Cast.js](https://github.com/castjs/castjs)
 
@@ -15,7 +15,7 @@ npm install --save react-castjs
 
 ## Usage
 
-### Wrap your React-App
+### Wrap your React-App 🌯
 
 ```jsx
 import { CastProvider } from 'react-castjs'
@@ -35,7 +35,7 @@ const App = () => {
 }
 ```
 
-### Use with Hook
+### Use with Hook ⚓
 
 ```jsx
 import { useCast, CastButton } from 'react-castjs'
@@ -62,7 +62,7 @@ function MyButton(){
 }
 ```
 
-### Handle Events
+### Handle Events 📆
 
 ```jsx
 import { useEffect, useRef, useState } from 'react'
@@ -112,12 +112,12 @@ function MyButton(){
 }
 ```
 
-## Docs
+## Docs 📃
 
 // TODO
 
 mostly shared with [Cast.js](https://github.com/castjs/castjs)
 
-## License
+## License ⚖️
 
 MIT © [smm76](https://github.com/smm76)
