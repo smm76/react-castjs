@@ -1,6 +1,11 @@
 import React from 'react'
-import styles from './styles.module.css'
+import {default as Provider, useCast as _useCast} from './CastProvider'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+
+import { default as Button } from './CastButton'
+
+export const CastProvider = Provider
+
+export const useCast = _useCast
+
+export const CastButton = Button

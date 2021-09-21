@@ -1,0 +1,9 @@
+.cast_button{
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.cast_button:disabled{
+    cursor: not-allowed;
+}

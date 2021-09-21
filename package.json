@@ -1,10 +1,10 @@
 {
-  "name": "cast",
+  "name": "react-castjs",
   "version": "1.0.0",
   "description": "chromecast ",
   "author": "smm76",
   "license": "MIT",
-  "repository": "smm76/cast",
+  "repository": "smm76/react-castjs",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
