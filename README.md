@@ -1,27 +1,61 @@
-# cast
+# react-castjs
 
-> chromecast 
+> Cast sender library for React, originally forked from Cast.js
 
-[![NPM](https://img.shields.io/npm/v/cast.svg)](https://www.npmjs.com/package/cast) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-castjs.svg)](https://www.npmjs.com/package/react-castjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save cast
+npm install --save react-castjs
 ```
 
 ## Usage
 
+### Wrap your React-App
+
 ```jsx
-import React, { Component } from 'react'
+import { CastProvider } from 'react-castjs'
 
-import MyComponent from 'cast'
-import 'cast/dist/index.css'
+import MyButton from './MyButton.js'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+
+  return (
+    <CastProvider>
+      <div>
+        <h1>My App</h1>
+        <MyButton />
+      </div>
+    </CastProvider>
+  )
+}
+```
+
+### Use with Hook
+
+```jsx
+import { useCast, CastButton } from 'react-castjs'
+
+
+
+function MyButton(){
+
+    const { chromecast } = useCast()
+
+    async function cast(){
+        if(chromecast.available){
+            try {
+                await chromecast.cast("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4", {})
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+    return (
+      <CastButton onClick={cast}/>
+    )
 }
 ```
 
