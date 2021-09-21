@@ -252,13 +252,21 @@ class Castjs {
         this._events[event].push(cb)
         return this
     }
-    off(event) {
+    off(event, fn) {
         if (!event) {
             // if no event name was given, reset all events
             this._events = {}
         } else if (this._events[event]) {
-            // remove all callbacks from event
-            this._events[event] = []
+            if(fn){
+                this._events[event].forEach((func, i) => {
+                    if(fn === func){
+                        this._events[event].splice(i,1)
+                    }
+                })
+            }else{
+                // remove all callbacks from event
+                this._events[event] = []
+            }
         }
         return this
     }

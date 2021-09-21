@@ -1,3 +1,12 @@
+:root{
+  --green: #23f17e;
+  --bg: #2f2e38;
+}
+
+html,body{
+  background-color: var(--bg);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +20,64 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    display: block;
+    background-color: #a0a0a0;
+    padding: .5rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  max-width: 90%;
+  margin: auto;
+  color: white;
+}
+
+.app > div{
+  width: 100%;
+}
+
+.links{
+  display: flex;
+  justify-content: space-between;
+}
+
+a{
+  color: var(--green);
+  font-weight: bold;
+}
+
+.status{
+  background-color: black;
+  border-radius: 5px;
+  padding: .5rem;
+  margin: 1rem 0;
+  color: var(--green);
+  font-family: monospace;
+  font-size: .9rem;
+  position: relative;
+}
+
+label{
+  display: block;
+}
+
+button{
+  background: none;
+  border: solid 2px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.clear{
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  color: white;
+  border-color: white;
 }

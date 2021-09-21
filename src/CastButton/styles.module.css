@@ -2,6 +2,8 @@
     cursor: pointer;
     background: none;
     border: none;
+    display: flex;
+    align-items: center;
 }
 
 .cast_button:disabled{
