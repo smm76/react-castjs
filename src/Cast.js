@@ -12,6 +12,10 @@ function loadScript(){
     })
 }
 
+const timer = new Promise((resolve, reject) => {
+    setTimeout(resolve, 5000)
+})
+
 // Castjs
 class Castjs {
     // constructor takes optional options
@@ -49,6 +53,7 @@ class Castjs {
         this.durationPretty = '00:00:00'
         this.progress       = 0
         this.state          = 'disconnected'
+        this.error          = null
 
         // initialize chromecast framework
         this._init()
@@ -57,9 +62,11 @@ class Castjs {
     async _init() {
         // casting only works on chrome, opera, brave and vivaldi
         if (!window.chrome || !window.chrome.cast || !window.chrome.cast.isAvailable) {
-            
             try {
-                await loadScript()
+                await Promise.race([loadScript(), timer])
+                if (!window.chrome || !window.chrome.cast || !window.chrome.cast.isAvailable){
+                    return this.trigger('error', 'Not available in this browser')
+                }
             } catch (error) {
                 this.trigger('error', error)
                 console.error(error)
@@ -279,6 +286,7 @@ class Castjs {
         }
         // dont call global event if error
         if (event === 'error') {
+            this.error = 'Not available in this browser'
             return this
         }
         // call global event handler if exist

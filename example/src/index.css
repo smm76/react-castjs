@@ -75,13 +75,14 @@ label{
 button{
   background: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .controls button{
   border: solid 2px white;
   color: white;
   font-weight: bold;
-  cursor: pointer;
+  padding: 5px;
 }
 
 .clear{
@@ -92,4 +93,6 @@ button{
   border: solid 2px;
   border-color: white;
   z-index: 10;
+  padding: 5px;
+  font-weight: bold;
 }

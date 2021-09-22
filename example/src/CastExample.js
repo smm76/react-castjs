@@ -21,7 +21,7 @@ function CastExample(){
     const [log, setLog] = useState([])
 
     useEffect(() => {
-
+        pushMessage(['initializing cast'])
 
         function onAvailable(){
             pushMessage(["cast available: "+chromecast.available])
@@ -39,10 +39,6 @@ function CastExample(){
             pushMessage(["cast disconnected"])
             setCastConnected(chromecast.connected)
         })
-        
-        chromecast.on('error', () => {
-            pushMessage(["error occured"])
-        })
 
         chromecast.on('playing', () => {
             setIsPlaying(true)
@@ -54,6 +50,10 @@ function CastExample(){
             pushMessage(["media paused"])
         })
 
+        chromecast.on('error', (e) => {
+            pushMessage(["error: "+e])
+        })
+
         // remove event listeners
         return function cleanup(){
             chromecast.off('connect')
@@ -62,6 +62,7 @@ function CastExample(){
             chromecast.off('available', onAvailable)
             chromecast.off('pause')
             chromecast.off('playing')
+            chromecast.off('error')
         }
     }, [])
 
