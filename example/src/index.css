@@ -31,13 +31,28 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  max-width: 90%;
+  /* width: 600px; */
+  max-width: 80%;
   margin: auto;
   color: white;
 }
 
 .app > div{
+  width: 100%;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content > div{
+  flex-grow: 1;
+  flex: 1 1 0px;
+}
+
+input[type=text]{
   width: 100%;
 }
 
@@ -96,3 +111,25 @@ button{
   padding: 5px;
   font-weight: bold;
 }
+
+@media only screen and (min-width: 992px){
+  .content {
+    flex-direction: row;
+  }
+
+  .content > div:first-child{
+    margin: 1rem 1rem 1rem 0;
+  }
+
+  .content > div:last-child{
+    margin: 1rem 0 1rem 1rem;
+  }
+}
+
+@media only screen and (min-width: 1600px){
+  .app{
+    max-width: 1300px;
+  }
+}
+
+

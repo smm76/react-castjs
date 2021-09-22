@@ -104,58 +104,66 @@ function CastExample(){
                 <a href="https://github.com/smm76/react-castjs" target="_blank" rel="noopener">view on github</a>
                 <a href="https://www.npmjs.com/package/react-castjs" target="_blank" rel="noopener">view on npm</a>
             </div>
-            <code>
-                npm i react-castjs -S
-            </code>
+            <div className="content">
+                <div>
 
-            <h3>Test casting</h3>
-            <div>
-                <label>paste source url (video, audio, image)</label>
-                <input ref={ref => inputRef.current = ref} type="text" value={source} style={{width: "80%"}} onFocus={() => inputRef.current.select()} onChange={e => setSource(e.target.value)}/> 
-                <br/>
-            </div>
-            <div>
-                <label>set poster image</label>
-                <input ref={ref => inputImgRef.current = ref} type="text" value={poster} style={{width: "80%"}} onFocus={() => inputImgRef.current.select()} onChange={e => setPoster(e.target.value)}/> 
-                <br/>
-            </div>
-            <div>
-                <label>set title</label>
-                <input type="text" value={title} style={{width: "80%"}} onChange={e => setTitle(e.target.value)}/> 
-            </div>
-            <br/>
+                    <code>
+                        npm i react-castjs -S
+                    </code>
 
-            <CastButton onClick={cast} size={30} style={{ fontWeight: "bold", background: "#23f17e", padding: ".5rem" }} title={castConnected? "cast" : "start casting"} disabled={!castAvailable || source === ""} />
-            <div style={{ position: "relative" }}>
-                {log.length > 0 && <button className="clear" onClick={() => {
-                    _log.current = []
-                    setLog([..._log.current])
-                }}>clear</button>}
-                <div ref={ref => statusRef.current = ref} className="status">
-                    {log.map((l,i) => (
-                        <div key={i.toString()}>
-                            <small style={{fontSize: ".7rem"}}>[{l.date}]</small> {l.msg}
-                        </div>
-                    ))}
+                    <h3>Test casting</h3>
+                    <div>
+                        <label>paste source url (video, audio, image)</label>
+                        <input ref={ref => inputRef.current = ref} type="text" value={source} onFocus={() => inputRef.current.select()} onChange={e => setSource(e.target.value)}/> 
+                        <br/>
+                    </div>
+                    <div>
+                        <label>set poster image</label>
+                        <input ref={ref => inputImgRef.current = ref} type="text" value={poster}  onFocus={() => inputImgRef.current.select()} onChange={e => setPoster(e.target.value)}/> 
+                        <br/>
+                    </div>
+                    <div>
+                        <label>set title</label>
+                        <input type="text" value={title}  onChange={e => setTitle(e.target.value)}/> 
+                    </div>
+                    <br/>
+
+                    <CastButton onClick={cast} size={30} style={{ fontWeight: "bold", background: "#23f17e", padding: ".5rem" }} title={castConnected? "cast" : "start casting"} disabled={!castAvailable || source === ""} />
+                </div>
+                <div>
+                    <div style={{ position: "relative" }}>
+                    {log.length > 0 && <button className="clear" onClick={() => {
+                        _log.current = []
+                        setLog([..._log.current])
+                    }}>clear</button>}
+                    <div ref={ref => statusRef.current = ref} className="status">
+                        {log.map((l,i) => (
+                            <div key={i.toString()}>
+                                <small style={{fontSize: ".7rem"}}>[{l.date}]</small> {l.msg}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {castConnected
+                &&
+                <div className="controls">
+                    {isPlaying
+                    ?
+                    <button onClick={() => chromecast.pause()}>
+                        pause
+                    </button>
+                    :
+                    <button onClick={() => chromecast.play()}>
+                        play
+                    </button>
+                    }    
+                    <button onClick={() => chromecast.disconnect()} style={{ marginLeft: ".5rem" }}>
+                        disconnect
+                    </button>    
+                </div>}
                 </div>
             </div>
-            {castConnected
-            &&
-            <div className="controls">
-                {isPlaying
-                ?
-                <button onClick={() => chromecast.pause()}>
-                    pause
-                </button>
-                :
-                <button onClick={() => chromecast.play()}>
-                    play
-                </button>
-                }    
-                <button onClick={() => chromecast.disconnect()} style={{ marginLeft: ".5rem" }}>
-                    disconnect
-                </button>    
-            </div>}
+            
             
         </div>
     )

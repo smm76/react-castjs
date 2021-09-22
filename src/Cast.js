@@ -53,8 +53,6 @@ class Castjs {
         this.durationPretty = '00:00:00'
         this.progress       = 0
         this.state          = 'disconnected'
-        this.error          = null
-
         // initialize chromecast framework
         this._init()
     }
@@ -69,7 +67,6 @@ class Castjs {
                 }
             } catch (error) {
                 this.trigger('error', error)
-                console.error(error)
                 throw new Error("Error loading Cast API")
             }
         }
@@ -286,7 +283,6 @@ class Castjs {
         }
         // dont call global event if error
         if (event === 'error') {
-            this.error = 'Not available in this browser'
             return this
         }
         // call global event handler if exist
